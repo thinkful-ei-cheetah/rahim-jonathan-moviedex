@@ -1,0 +1,31 @@
+{
+  "name": "rahim-jonathan-moviedex",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app",
+    "dev": "nodemon app",
+    "debug": "ndb node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thinkful-ei-cheetah/rahim-jonathan-moviedex.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thinkful-ei-cheetah/rahim-jonathan-moviedex/issues"
+  },
+  "homepage": "https://github.com/thinkful-ei-cheetah/rahim-jonathan-moviedex#readme",
+  "keywords": [],
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
+  }
+}
