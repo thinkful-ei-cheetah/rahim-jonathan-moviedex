@@ -6,7 +6,7 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
 
-const movies = require('./movies.js');
+let movies = require('./movies.js');
 
 app.use(morgan('common'));
 
@@ -30,17 +30,14 @@ function validateBearerToken(req, res, next) {
 
 app.get('/movie', validateBearerToken, (req, res) => {
   const { genre, avg_vote, country } = req.query;
-  let results = [];
   if (genre) {
-    results = movies.filter(movie =>
+    movies = movies.filter(movie =>
       movie.genre.toLowerCase().includes(genre.toLowerCase())
     );
-  } else {
-    results = movies;
   }
 
   if (country) {
-    results = movies.filter(movie =>
+    movies = movies.filter(movie =>
       movie.country.toLowerCase().includes(country.toLowerCase())
     );
   }
@@ -50,11 +47,11 @@ app.get('/movie', validateBearerToken, (req, res) => {
     if (Number.isNaN(userAvg_Vote)) {
       res.status(400).send('Average vote must be a number');
     } else {
-      results = movies.filter(movie => movie.avg_vote >= userAvg_Vote);
+      movies = movies.filter(movie => movie.avg_vote >= userAvg_Vote);
     }
   }
 
-  res.json(results);
+  res.json(movies);
 });
 
 app.listen(8000, () => {
