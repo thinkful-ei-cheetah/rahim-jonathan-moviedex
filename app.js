@@ -29,19 +29,20 @@ function validateBearerToken(req, res, next) {
 }
 
 app.get('/movie', validateBearerToken, (req, res) => {
-  const { genre = '', avg_vote = '', country = '' } = req.query;
+  const { genre, avg_vote, country } = req.query;
   let results = [];
   if (genre) {
-    results = movies.filter(movie => movie.genre.includes(genre));
+    results = movies.filter(movie =>
+      movie.genre.toLowerCase().includes(genre.toLowerCase())
+    );
   } else {
     results = movies;
   }
 
   if (country) {
-    results = movies.filter(movie => movie.country.includes(country));
-    console.log(country);
-  } else {
-    results = movies;
+    results = movies.filter(movie =>
+      movie.country.toLowerCase().includes(country.toLowerCase())
+    );
   }
 
   if (avg_vote) {
